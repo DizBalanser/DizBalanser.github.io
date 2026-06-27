@@ -1,0 +1,190 @@
+{{ if .Site.Params.hero.enable | default false }}
+{{- $hero := .Site.Language.Params.hero | default .Site.Params.hero -}}
+<section id="hero" class="py-5 align-middle">
+    <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-8 content {{ if .Site.Params.animate }}animate{{ end }}" id="primary-font">
+                <span class="subtitle">
+                    {{ $hero.intro }}
+                </span>
+                <h1>
+                    {{ $hero.title }}
+                </h1>
+                <h2>
+                    {{ $hero.subtitle }}
+                </h2>
+                <p class="hero-content">
+                    {{ $hero.content | markdownify }}
+                </p>
+                <div class="row">
+                    <div class="col-auto h-100">
+                        {{ if .Site.Params.hero.button.enable }}
+                        <a href="{{ .Site.Params.hero.button.url }}" class="btn" {{ cond .Site.Params.hero.button.download "download" "" }}
+			  {{ if .Site.Params.hero.button.newPage | default true }}
+                          target="_blank"
+                          {{ end }}>
+                            {{ $hero.button.name | default .Site.Params.hero.button.name }}
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="col-auto px-0 h-100">
+                        {{- partial "sections/hero/social.html" . -}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-9 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
+                        <canvas id="particleSphere" width="400" height="400" style="max-width:100%; border-radius: 50%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ if .Site.Params.hero.bottomImage.enable | default true }}
+    <div class="hero-bottom-svg d-md-block d-lg-block d-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="201" height="201" viewBox="0 0 201 201">
+            <g id="Group_1168" data-name="Group 1168" transform="translate(-384 -1392)">
+                <rect width="12" height="2" rx="1" transform="translate(391 1392) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(391 1500) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(391 1446) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(391 1554) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(499 1392) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(499 1500) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(499 1446) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(445 1392) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(445 1500) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(553 1392) rotate(90)" fill="#282f49" />
+                <rect width="12" height="2" rx="1" transform="translate(553 1500) rotate(90)" fill="#282f49" />
+            </g>
+        </svg>
+    </div>
+    {{ end }}
+</section>
+
+<script>
+(function() {
+    const canvas = document.getElementById('particleSphere');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const cx = W / 2, cy = H / 2;
+    const particles = [];
+    const N = 1600;
+    const SCALE = 130;
+    const TUBE_R = 0.32;
+
+    for (let i = 0; i < N; i++) {
+        const t = (i / N) * Math.PI * 2;
+        const s2 = Math.sin(t) * Math.sin(t);
+        const denom = 1 + s2;
+        const pathY = Math.cos(t) / denom;
+        const pathX = Math.sin(t) * Math.cos(t) / denom;
+
+        const tubeAngle = Math.random() * Math.PI * 2;
+        const tubeR = TUBE_R * (0.5 + Math.random() * 0.5);
+
+        const dt = 0.01;
+        const t2 = t + dt;
+        const s2b = Math.sin(t2) * Math.sin(t2);
+        const denomB = 1 + s2b;
+        const dy = Math.cos(t2) / denomB - pathY;
+        const dx = Math.sin(t2) * Math.cos(t2) / denomB - pathX;
+        const len = Math.sqrt(dx*dx + dy*dy) || 1;
+        const nx = -dy / len, ny = dx / len;
+
+        particles.push({
+            ox: pathX + nx * Math.cos(tubeAngle) * tubeR,
+            oy: pathY + ny * Math.cos(tubeAngle) * tubeR,
+            oz: Math.sin(tubeAngle) * tubeR,
+            t: t,
+            speed: 0.3 + Math.random() * 0.7,
+            phase: Math.random() * Math.PI * 2
+        });
+    }
+
+    let angleX = 0, angleY = 0;
+    let mouseX = 0, mouseY = 0;
+    let isHovering = false;
+    let time = 0;
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        isHovering = true;
+    });
+    canvas.addEventListener('mouseleave', () => { isHovering = false; });
+
+    function isDark() {
+        return document.body.classList.contains('dark');
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        time += 0.016;
+
+        // Faster, more dynamic rotation
+        if (isHovering) {
+            angleY += (mouseX * 0.05 - angleY * 0.06) * 0.15;
+            angleX += (mouseY * 0.05 - angleX * 0.06) * 0.15;
+        } else {
+            angleY += 0.008;
+            angleX += 0.003;
+        }
+
+        // Breathing pulse
+        const pulse = 1 + Math.sin(time * 1.5) * 0.06;
+        const scale_base = SCALE * pulse;
+
+        const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+        const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+
+        const dark = isDark();
+        const baseR = dark ? 255 : 0;
+        const baseG = dark ? 255 : 0;
+        const baseB = dark ? 255 : 0;
+
+        const projected = particles.map((p, i) => {
+            // Shimmer offset
+            const shimmer = Math.sin(time * 2 + p.phase) * 0.03 * p.speed;
+
+            let x = (p.ox + shimmer) * cosY - p.oz * sinY;
+            let z = (p.ox + shimmer) * sinY + p.oz * cosY;
+            let y = p.oy;
+
+            let y2 = y * cosX - z * sinX;
+            let z2 = y * sinX + z * cosX;
+
+            const perspScale = 1 / (1 + z2 * 0.25);
+            const px = cx + x * scale_base * perspScale;
+            const py = cy + y2 * scale_base * perspScale;
+            const depth = (z2 + 1.5) / 3;
+
+            return { px, py, depth, z2, speed: p.speed };
+        });
+
+        projected.sort((a, b) => a.z2 - b.z2);
+
+        projected.forEach(p => {
+            const d = Math.max(0, Math.min(1, p.depth));
+            const alpha = 0.08 + d * 0.92;
+            const size = 0.3 + d * 2.0;
+            ctx.beginPath();
+            ctx.arc(p.px, p.py, size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${baseR}, ${baseG}, ${baseB}, ${alpha})`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {});
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+{{ end }}
+
