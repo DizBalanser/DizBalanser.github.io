@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanatbek Zhamurzaev — AI Engineer & Quant Researcher</title>
+    <meta name="description" content="AI Engineer & Quantitative Researcher. Building intelligent systems and algorithmic trading signals.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f; --bg-card: rgba(255,255,255,0.03); --bg-glass: rgba(255,255,255,0.05);
+            --text: #e4e4e7; --text-dim: #71717a; --text-bright: #fafafa;
+            --accent: #06b6d4; --accent2: #8b5cf6; --accent-glow: rgba(6,182,212,0.15);
+            --border: rgba(255,255,255,0.06);
+            --font: 'Inter', -apple-system, sans-serif; --mono: 'JetBrains Mono', monospace;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; backdrop-filter: blur(20px); background: rgba(10,10,15,0.8); border-bottom: 1px solid var(--border); }
+        nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        nav .logo { font-weight: 800; font-size: 1.3rem; color: var(--text-bright); letter-spacing: -0.5px; }
+        nav .logo span { color: var(--accent); }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav ul a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        nav ul a:hover { color: var(--text-bright); }
+        nav ul a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
+        nav ul a:hover::after { width: 100%; }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        #hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+        #hero canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.4; }
+        .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 100px; background: var(--accent-glow); border: 1px solid rgba(6,182,212,0.2); font-size: 0.85rem; color: var(--accent); font-family: var(--mono); margin-bottom: 1.5rem; }
+        .hero-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero-name { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.05; letter-spacing: -2px; color: var(--text-bright); margin-bottom: 1rem; }
+        .hero-name .gradient { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { font-size: 1.25rem; color: var(--text-dim); max-width: 550px; margin-bottom: 2rem; font-weight: 300; }
+        .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-links a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(6,182,212,0.3); }
+        .btn-ghost { background: var(--bg-glass); color: var(--text); border: 1px solid var(--border); }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-label { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.5rem; }
+        .section-title { font-size: 2.5rem; font-weight: 800; color: var(--text-bright); letter-spacing: -1px; margin-bottom: 3rem; }
+
+        .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .track-card { padding: 2.5rem; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--border); transition: all 0.4s; position: relative; overflow: hidden; }
+        .track-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 20px 20px 0 0; }
+        .track-card.ai::before { background: linear-gradient(90deg, var(--accent), #22d3ee); }
+        .track-card.quant::before { background: linear-gradient(90deg, var(--accent2), #a78bfa); }
+        .track-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); background: rgba(255,255,255,0.04); }
+        .track-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .track-card h3 { font-size: 1.4rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.5rem; }
+        .track-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; }
+        .track-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+        .track-tags span { padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-family: var(--mono); background: var(--bg-glass); border: 1px solid var(--border); color: var(--text-dim); }
+
+        .timeline { position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2), transparent); }
+        .timeline-item { padding-left: 2.5rem; margin-bottom: 3rem; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -5px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+        .tl-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+        .tl-role { font-size: 1.1rem; font-weight: 700; color: var(--text-bright); }
+        .tl-date { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); }
+        .tl-company { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+        .tl-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; }
+        .tl-desc li { margin-bottom: 0.3rem; list-style: none; }
+        .tl-desc li::before { content: '\2192 '; color: var(--accent); }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; }
+        .project-card { border-radius: 16px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); transition: all 0.4s; cursor: pointer; }
+        .project-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-4px); }
+        .project-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+        .project-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, var(--bg) 100%); }
+        .project-body { padding: 1.5rem; }
+        .project-body h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.5rem; }
+        .project-body p { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 1rem; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+        .project-tags span { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-family: var(--mono); background: var(--accent-glow); color: var(--accent); }
+        .project-link { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.3s; }
+        .project-link:hover { color: var(--accent); }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .skill-group { padding: 2rem; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); }
+        .skill-group h4 { font-size: 0.9rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-list span { padding: 0.35rem 0.9rem; border-radius: 8px; font-size: 0.85rem; background: var(--bg-glass); border: 1px solid var(--border); color: var(--text); transition: all 0.3s; }
+        .skill-list span:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+        #contact { text-align: center; padding-bottom: 4rem; }
+        #contact .section-title { margin-bottom: 1rem; }
+        .contact-desc { color: var(--text-dim); max-width: 500px; margin: 0 auto 2rem; }
+        .contact-email { font-size: 1.3rem; font-weight: 600; color: var(--accent); text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .contact-email:hover { color: var(--accent2); }
+        .contact-socials { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .contact-socials a { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--bg-glass); border: 1px solid var(--border); color: var(--text-dim); font-size: 1.2rem; text-decoration: none; transition: all 0.3s; }
+        .contact-socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--text-dim); border-top: 1px solid var(--border); font-family: var(--mono); }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .menu-toggle { display: block; }
+            nav ul.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,15,0.95); padding: 1rem 2rem; backdrop-filter: blur(20px); }
+            .tracks { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .hero-name { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">sanat<span>.</span>dev</div>
+        <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="hero">
+    <canvas id="bgCanvas"></canvas>
+    <div class="hero-content">
+        <div class="hero-tag"><span class="dot"></span> Open to opportunities</div>
+        <h1 class="hero-name">Sanatbek<br><span class="gradient">Zhamurzaev</span></h1>
+        <p class="hero-desc">AI Engineer & Quantitative Researcher building intelligent systems at the intersection of machine learning and financial markets.</p>
+        <div class="hero-links">
+            <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+            <a href="https://github.com/DizBalanser" target="_blank" class="btn-ghost"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://linkedin.com/in/dizbalanser" target="_blank" class="btn-ghost"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <p class="section-label">// what I do</p>
+    <h2 class="section-title">Two Tracks, One Mission</h2>
+    <div class="tracks">
+        <div class="track-card ai fade-up">
+            <div class="track-icon">&#129302;</div>
+            <h3>AI Engineer</h3>
+            <p>Building production AI workflows — from RAG systems and LLM-powered tools to automated lead qualification pipelines. Currently at ModifAI Labs deploying solutions that cut manual work by 40%.</p>
+            <div class="track-tags"><span>LLM APIs</span><span>RAG</span><span>FastAPI</span><span>LangChain</span><span>n8n</span><span>Docker</span></div>
+        </div>
+        <div class="track-card quant fade-up">
+            <div class="track-icon">&#128200;</div>
+            <h3>Quant Researcher</h3>
+            <p>Actively analyzing Crypto & TradFi markets since 2021. Building automated scanners, statistical signal generators, and event-driven trading models for intraday strategies.</p>
+            <div class="track-tags"><span>Algo Signals</span><span>Open Interest</span><span>Candlesticks</span><span>Event-Driven</span><span>Python</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <p class="section-label">// where I've worked</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">AI Automation Engineer</span><span class="tl-date">Jun 2026 — Present</span></div><div class="tl-company">ModifAI Labs</div><ul class="tl-desc"><li>5+ automated AI workflows with n8n and Python, streamlining sales pipeline</li><li>OpenAI & Gemini LLMs for unstructured data classification, reducing qualification by 40%</li><li>Real-time webhook triggers connecting CRM, email, and dashboards</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Python Intern</span><span class="tl-date">May 2026 — Present</span></div><div class="tl-company">EPAM Lab</div><ul class="tl-desc"><li>12-week enterprise program: scalable Python, microservices, 90%+ test coverage</li><li>RESTful API services with clean architecture and comprehensive testing</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Technical Lead</span><span class="tl-date">Aug 2025 — Present</span></div><div class="tl-company">Google Developer Groups ELTE</div><ul class="tl-desc"><li>DevFest Budapest for 150+ attendees — speaker coordination and live demos</li><li>Automated judging pipelines for hackathons with 200+ participants</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Teaching Assistant — Algo & DS</span><span class="tl-date">Jan — Jun 2026</span></div><div class="tl-company">ELTE University</div><ul class="tl-desc"><li>Mentored 300+ students on algorithmic efficiency and sorting</li><li>Graded 500+ assignments, improving optimization scores by 25%</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Research Assistant</span><span class="tl-date">May — Oct 2025</span></div><div class="tl-company">Dr. Alexander Chervov</div><ul class="tl-desc"><li>EDA on 10+ GB structural datasets with Python, Pandas, Jupyter</li><li>Co-authored 50+ pages of research documentation in LaTeX</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Automation & Backend Developer</span><span class="tl-date">Nov 2025 — Jun 2026</span></div><div class="tl-company">ToiWare</div><ul class="tl-desc"><li>API pipelines (Webhooks to Make.com to Airtable), saving 15+ hours/week</li><li>Python ETL with deduplication and anomaly detection, -35% errors</li></ul></div>
+        <div class="timeline-item"><div class="tl-header"><span class="tl-role">Visual Data Engineer</span><span class="tl-date">Jun — Dec 2025</span></div><div class="tl-company">Manevision</div><ul class="tl-desc"><li>Data cleaning pipelines for 5,000+ visual samples for ML training</li><li>Optimized metadata processing: -25% execution time, 99% consistency</li></ul></div>
+    </div>
+</section>
+
+<section id="projects">
+    <p class="section-label">// what I've built</p>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#0891b2,#6366f1);">&#129504;</div><div class="project-body"><h3>ClearMind — Digital Twin</h3><p>Bachelor's thesis. Personal knowledge retrieval system with RAG backend handling 100+ daily queries.</p><div class="project-tags"><span>FastAPI</span><span>React</span><span>Gemini</span><span>RAG</span></div><a href="https://github.com/DizBalanser/ClearMind" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#7c3aed,#ec4899);">&#128200;</div><div class="project-body"><h3>Algorithmic Trading Signals</h3><p>Automated Python scanners for Crypto & TradFi: OI anomalies, candlestick patterns, event-driven signals.</p><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Trading</span></div><a href="https://github.com/DizBalanser" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#0ea5e9,#2563eb);">&#127942;</div><div class="project-body"><h3>GDE MIT Hackathon</h3><p>AI solution with Azure OpenAI — dynamic programming for optimal context window management.</p><div class="project-tags"><span>Azure OpenAI</span><span>Python</span><span>Swift</span></div><a href="https://github.com/DizBalanser/gde_mit_hackathon" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#059669,#10b981);">&#129302;</div><div class="project-body"><h3>AI Agents Cookbook</h3><p>Production-ready AI agent experiments: tool-use, chain-of-thought, multi-agent orchestration.</p><div class="project-tags"><span>Jupyter</span><span>LLM APIs</span><span>Agents</span></div><a href="https://github.com/DizBalanser/my_agents_cook_book" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#d946ef,#f43f5e);">&#127919;</div><div class="project-body"><h3>Lead Gen Automation</h3><p>B2B lead generation pipeline with LLM-powered classification and automated enrichment.</p><div class="project-tags"><span>Python</span><span>APIs</span><span>Automation</span></div><a href="https://github.com/DizBalanser/lead_gen" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+        <div class="project-card fade-up"><div class="project-img" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">&#127984;</div><div class="project-body"><h3>IronCrest</h3><p>Full-stack web application with backend development, database integration, modern architecture.</p><div class="project-tags"><span>PHP</span><span>Full-Stack</span><span>Database</span></div><a href="https://github.com/DizBalanser/ironcrest" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a></div></div>
+    </div>
+</section>
+
+<section id="skills">
+    <p class="section-label">// tech I use</p>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <div class="skills-grid">
+        <div class="skill-group fade-up"><h4>AI & Agentic</h4><div class="skill-list"><span>Prompt Engineering</span><span>RAG</span><span>LangChain</span><span>Function Calling</span><span>AI Agents</span><span>Tool-Use</span></div></div>
+        <div class="skill-group fade-up"><h4>APIs & Cloud</h4><div class="skill-list"><span>OpenAI</span><span>Gemini</span><span>Azure OpenAI</span><span>AWS</span><span>Docker</span><span>REST APIs</span></div></div>
+        <div class="skill-group fade-up"><h4>Programming</h4><div class="skill-list"><span>Python</span><span>Java</span><span>SQL</span><span>JavaScript</span><span>C</span><span>Bash</span></div></div>
+        <div class="skill-group fade-up"><h4>Data & Analysis</h4><div class="skill-list"><span>Pandas</span><span>NumPy</span><span>Jupyter</span><span>ETL</span><span>EDA</span><span>PostgreSQL</span></div></div>
+        <div class="skill-group fade-up"><h4>Automation</h4><div class="skill-list"><span>n8n</span><span>Make.com</span><span>Webhooks</span><span>Airtable</span><span>FastAPI</span></div></div>
+        <div class="skill-group fade-up"><h4>Quantitative</h4><div class="skill-list"><span>Algo Signals</span><span>Market Microstructure</span><span>Open Interest</span><span>Time Series</span></div></div>
+    </div>
+</section>
+
+<section id="contact">
+    <p class="section-label">// let's connect</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="contact-desc">My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+    <a href="mailto:work.sanatbek@gmail.com" class="contact-email"><i class="fas fa-envelope"></i> work.sanatbek@gmail.com</a>
+    <div class="contact-socials">
+        <a href="https://github.com/DizBalanser" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/dizbalanser" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://t.me/DizBalanser" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="mailto:work.sanatbek@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+</section>
+
+<footer><p>Built by Sanatbek Zhamurzaev &middot; 2026</p></footer>
+
+<script>
+(function(){const c=document.getElementById('bgCanvas'),x=c.getContext('2d');let W,H,p=[],m={x:null,y:null};function r(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}r();window.addEventListener('resize',r);window.addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});for(let i=0;i<80;i++)p.push({x:Math.random()*2000,y:Math.random()*1200,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,size:Math.random()*2+0.5});function d(){x.clearRect(0,0,W,H);p.forEach((a,i)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;x.beginPath();x.arc(a.x,a.y,a.size,0,Math.PI*2);x.fillStyle='rgba(6,182,212,0.4)';x.fill();for(let j=i+1;j<p.length;j++){const dx=a.x-p[j].x,dy=a.y-p[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(p[j].x,p[j].y);x.strokeStyle=`rgba(6,182,212,${0.15*(1-dist/150)})`;x.lineWidth=0.5;x.stroke()}}if(m.x){const dx=a.x-m.x,dy=a.y-m.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<200){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(m.x,m.y);x.strokeStyle=`rgba(139,92,246,${0.2*(1-dist/200)})`;x.lineWidth=0.8;x.stroke()}}});requestAnimationFrame(d)}d()})();
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -98,7 +98,7 @@ languages:
 
 params:
   title: "Sanatbek Zhamurzaev"
-  description: "AI Engineer & Quantitative Researcher | Python, LLMs, Algorithmic Trading"
+  description: "AI Engineer, Data Scientist & Quantitative Researcher | Python, LLMs, Algorithmic Trading"
   favicon: "/fav.png"
   useBootstrapCDN: false
   mathjax: false
@@ -131,8 +131,8 @@ params:
     enable: true
     intro: "Hi, my name is"
     title: "Sanatbek."
-    subtitle: "I don't just write code. I build intelligent systems."
-    content: "AI Engineer and Quantitative Researcher with a passion for LLMs, automated trading signals, and turning raw data into real-world impact. From deploying enterprise AI workflows to analyzing crypto markets since 2021 — I ship things that matter."
+    subtitle: "AI Engineer · Data Scientist · Quant Researcher"
+    content: "Building intelligent systems at the intersection of AI and data. From deploying enterprise LLM workflows and extracting insights from complex datasets to analyzing crypto markets since 2021 — I ship things that matter."
     image: /images/hero.jpg
     bottomImage:
       enable: true
