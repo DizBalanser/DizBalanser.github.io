@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DizBalanser Studio — Bespoke Websites for Restaurants & Distinct Brands</title>
+  <meta name="description" content="Bespoke web design and engineering in Budapest. Tailored digital experiences for gastronomy, hospitality, and independent creators in warm ivory and caramel luxury.">
+  <meta name="keywords" content="webfejlesztés Budapest, étterem weboldal készítés, web design Budapest, bespoke web studio, luxury web agency">
+  <link rel="icon" type="image/png" href="../fav.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DizBalanser Studio — Websites of Discretion & Caliber">
+  <meta property="og:description" content="Bespoke web development for restaurants, local brands, and creators in Budapest and internationally.">
+  <meta property="og:url" content="https://dizbalanser.github.io/website">
+
+  <!-- Typography: Cormorant Garamond (Haute Couture Serif) + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          colors: {
+            // Caramel Milk & Ivory Palette
+            ivory: {
+              DEFAULT: '#FAF6F0', // Main background: warm alabaster / milk ivory
+              paper: '#F6F1E8',   // Slightly deeper ivory paper
+              canvas: '#F0E9DC',  // Soft latte canvas
+            },
+            milk: {
+              DEFAULT: '#FFFDF9', // Warm silk milk for cards
+              pure: '#FFFFFF',
+              tint: '#FCF9F3',
+            },
+            caramel: {
+              50: '#FDF8F3',
+              100: '#F8EDE1',
+              200: '#ECCFA5',
+              300: '#DFB069',
+              500: '#C58448',   // Classic rich toffee caramel
+              600: '#B06F35',   // Warm toasted caramel
+              700: '#8E5324',   // Deep cognac / roasted caramel
+              800: '#73411A',
+            },
+            espresso: {
+              DEFAULT: '#1E1A17', // Roasted coffee bean (deep warm luxury black)
+              soft: '#2D2824',
+              secondary: '#5C544D', // Warm mocha gray
+              muted: '#8F857B',     // Sandstone muted
+            },
+            seam: {
+              DEFAULT: '#E9E2D5', // Hairline warm border
+              dark: '#DDD4C4',
+              caramel: '#E2D3BE',
+            }
+          },
+          boxShadow: {
+            'luxury': '0 4px 20px -2px rgba(45, 35, 25, 0.03), 0 20px 40px -10px rgba(45, 35, 25, 0.05)',
+            'caramel': '0 12px 30px -5px rgba(176, 111, 53, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF6F0;
+      color: #1E1A17;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif-italic {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hairline-b {
+      border-bottom: 1px solid #E9E2D5;
+    }
+
+    .hairline-t {
+      border-top: 1px solid #E9E2D5;
+    }
+
+    .nav-blur {
+      background: rgba(250, 246, 240, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .img-zoom-container {
+      overflow: hidden;
+    }
+    .img-zoom-container img {
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .img-zoom-container:hover img {
+      transform: scale(1.04);
+    }
+
+    ::selection {
+      background: #1E1A17;
+      color: #FAF6F0;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <header class="fixed top-0 left-0 right-0 z-50 nav-blur hairline-b transition-all">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+      
+      <!-- Brand Monogram -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="w-8 h-8 rounded-full border border-caramel-500/40 bg-caramel-100/50 flex items-center justify-center font-serif text-sm font-semibold tracking-tighter text-caramel-700 group-hover:bg-caramel-600 group-hover:text-white transition-all">
+          D
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-semibold text-lg tracking-tight text-espresso group-hover:text-caramel-600 transition-colors">
+            DizBalanser <span class="font-sans font-light text-[11px] uppercase tracking-widest text-espresso-muted ml-1">Studio</span>
+          </span>
+          <span class="text-[10px] uppercase tracking-wider text-espresso-muted flex items-center gap-1.5 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-caramel-600"></span>
+            <span data-i18n="nav_city">Budapest, HU • Available</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-9 text-[13px] font-medium tracking-wide uppercase text-espresso-secondary">
+        <a href="#works" class="hover:text-espresso transition-colors" data-i18n="nav_works">Works</a>
+        <a href="#philosophy" class="hover:text-espresso transition-colors" data-i18n="nav_craft">Craft</a>
+        <a href="#services" class="hover:text-espresso transition-colors" data-i18n="nav_services">Services</a>
+        <a href="#calculator" class="hover:text-espresso transition-colors" data-i18n="nav_pricing">Pricing</a>
+        <a href="#contact" class="hover:text-espresso transition-colors" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <!-- Language Selector & Quick CTA -->
+      <div class="hidden sm:flex items-center gap-5">
+        <!-- 3-Way Language Switcher (EN, HU, RU) in warm latte frame -->
+        <div class="flex items-center border border-seam rounded-full p-0.5 text-xs font-semibold bg-ivory-canvas/60">
+          <button id="lang-en" onclick="switchLang('en')" class="px-2.5 py-1 rounded-full bg-espresso text-milk transition-all">EN</button>
+          <button id="lang-hu" onclick="switchLang('hu')" class="px-2.5 py-1 rounded-full text-espresso-muted hover:text-espresso transition-all">HU</button>
+          <button id="lang-ru" onclick="switchLang('ru')" class="px-2.5 py-1 rounded-full text-espresso-muted hover:text-espresso transition-all">RU</button>
+        </div>
+
+        <!-- Telegram Action Button in Warm Roasted Espresso -->
+        <a href="https://t.me/dizbalanser?text=Hi!%20I%20would%20like%20to%20discuss%20a%20website%20project." target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso hover:bg-caramel-600 text-milk text-xs font-semibold uppercase tracking-wider transition-all shadow-sm">
+          <span data-i18n="nav_discuss">Start a Project</span>
+          <span class="font-normal text-caramel-200">→</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="flex items-center gap-3 md:hidden">
+        <div class="flex items-center border border-seam rounded-full p-0.5 text-xs font-medium bg-ivory-canvas/60">
+          <button id="lang-en-mob" onclick="switchLang('en')" class="px-2 py-0.5 rounded-full bg-espresso text-milk">EN</button>
+          <button id="lang-hu-mob" onclick="switchLang('hu')" class="px-2 py-0.5 rounded-full text-espresso-muted">HU</button>
+          <button id="lang-ru-mob" onclick="switchLang('ru')" class="px-2 py-0.5 rounded-full text-espresso-muted">RU</button>
+        </div>
+
+        <button onclick="toggleMobileMenu()" class="p-2 text-espresso focus:outline-none" aria-label="Toggle Navigation">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-ivory/98 border-b border-seam px-6 py-6 space-y-4">
+      <nav class="flex flex-col space-y-3 text-sm font-medium tracking-wide uppercase text-espresso-secondary">
+        <a href="#works" onclick="toggleMobileMenu()" class="hover:text-espresso" data-i18n="nav_works">Works</a>
+        <a href="#philosophy" onclick="toggleMobileMenu()" class="hover:text-espresso" data-i18n="nav_craft">Craft</a>
+        <a href="#services" onclick="toggleMobileMenu()" class="hover:text-espresso" data-i18n="nav_services">Services</a>
+        <a href="#calculator" onclick="toggleMobileMenu()" class="hover:text-espresso" data-i18n="nav_pricing">Pricing</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-espresso" data-i18n="nav_contact">Contact</a>
+      </nav>
+      <div class="pt-4 hairline-t">
+        <a href="https://t.me/dizbalanser" target="_blank" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-espresso text-milk font-semibold text-xs uppercase tracking-wider">
+          <span data-i18n="nav_discuss">Start a Project in Telegram</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       HERO SECTION: WARM IVORY & CARAMEL EDITORIAL
+  ══════════════════════════════════════ -->
+  <main class="flex-grow pt-28">
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-6 sm:px-10">
+      
+      <!-- Studio Subtitle / Tagline -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 hairline-b mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel-100/70 border border-seam-caramel text-caramel-700 text-[11px] uppercase tracking-[0.25em] font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-caramel-600"></span>
+          <span data-i18n="hero_pill">Bespoke Web Design & Engineering Studio</span>
+        </div>
+        <div class="text-xs text-espresso-secondary font-mono tracking-tight" data-i18n="hero_meta">
+          Budapest, Hungary • Central Europe • Worldwide Remote
+        </div>
+      </div>
+
+      <!-- Main Headline: Cormorant Garamond Elegance -->
+      <div class="max-w-5xl mb-12">
+        <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.08] text-espresso mb-6">
+          <span data-i18n="hero_h1_prefix">Websites that convey your</span>
+          <span class="serif-italic text-caramel-600" data-i18n="hero_h1_accent"> taste and caliber </span>
+          <span data-i18n="hero_h1_suffix">without saying a word.</span>
+        </h1>
+        <p class="text-base sm:text-xl text-espresso-secondary font-light max-w-3xl leading-relaxed" data-i18n="hero_desc">
+          Crafting distinctive digital spaces for restaurants, independent businesses, and personal brands. Refined editorial typography, clean engineering without bulky builders, and sub-second rendering on smartphones.
+        </p>
+      </div>
+
+      <!-- Hero Actions -->
+      <div class="flex flex-wrap items-center gap-4 mb-20">
+        <a href="https://t.me/dizbalanser?text=Hi!%20I%20would%20like%20to%20discuss%20a%20website%20project." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-espresso hover:bg-caramel-600 text-milk font-medium text-sm transition-all shadow-luxury hover:shadow-caramel">
+          <span data-i18n="hero_btn_discuss">Discuss on Telegram</span>
+          <span class="text-caramel-200">→</span>
+        </a>
+        <a href="#works" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-seam bg-milk hover:bg-ivory-canvas text-espresso font-medium text-sm transition-all">
+          <span data-i18n="hero_btn_works">View Selected Works</span>
+          <span class="text-espresso-muted">↓</span>
+        </a>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           VISUAL HERO GALLERY (3 PROJECTS)
+      ══════════════════════════════════════ -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 pt-4">
+        
+        <!-- Showcase Box 1: Cirkusz Budapest -->
+        <a href="http://www.cirkuszbp.hu/" target="_blank" class="group md:col-span-7 rounded-3xl bg-milk border border-seam p-6 sm:p-8 shadow-luxury hover:border-seam-caramel transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between pb-4 hairline-b mb-5 text-xs text-espresso-muted">
+            <span class="font-serif italic text-lg font-medium text-espresso">Cirkusz Budapest</span>
+            <span class="font-mono text-[11px] uppercase tracking-wider text-caramel-700 font-semibold bg-caramel-100/60 px-2.5 py-0.5 rounded-full border border-seam-caramel">Hospitality / Brunch</span>
+          </div>
+          <div class="img-zoom-container rounded-2xl bg-ivory-canvas overflow-hidden aspect-[16/10] relative mb-5 border border-seam">
+            <img src="https://www.cirkuszbp.hu/img/260415%20DF%20Cirkusz0823.jpg" alt="Cirkusz Budapest Brunch" class="w-full h-full object-cover object-center" loading="lazy">
+            <div class="absolute bottom-4 left-4 bg-milk/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-medium text-espresso shadow-sm flex items-center gap-1.5 border border-seam">
+              <span>cirkuszbp.hu</span>
+              <span class="text-caramel-600 font-bold">↗</span>
+            </div>
+          </div>
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="font-serif text-2xl font-medium text-espresso" data-i18n="hero_cirkusz_title">Atmospheric web experience for Budapest's iconic brunch spot</div>
+              <p class="text-xs text-espresso-secondary mt-1.5 font-light" data-i18n="hero_cirkusz_sub">Digital menu, allergen filters, Bagira coffee, &lt;0.4s load speed</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Showcase Box 2 & 3: Right Stack in Ivory Milk -->
+        <div class="md:col-span-5 flex flex-col gap-6">
+          
+          <!-- Box 2: Alma & Körte -->
+          <a href="https://almaeskorte.hu/indexEN.html" target="_blank" class="group rounded-3xl bg-milk border border-seam p-6 shadow-luxury hover:border-seam-caramel transition-all flex flex-col justify-between flex-1">
+            <div class="flex items-center justify-between pb-3 hairline-b mb-4 text-xs text-espresso-muted">
+              <span class="font-serif italic text-lg font-medium text-espresso">Alma & Körte</span>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-caramel-700 font-semibold bg-caramel-100/60 px-2.5 py-0.5 rounded-full border border-seam-caramel">Dining / Wine</span>
+            </div>
+            <div class="img-zoom-container rounded-2xl bg-ivory-canvas overflow-hidden aspect-[16/9] relative mb-4 border border-seam">
+              <img src="https://almaeskorte.hu/Media/fb_aandk.jpg" alt="Alma & Körte Restaurant Budapest" class="w-full h-full object-cover object-center" loading="lazy">
+              <div class="absolute bottom-3 left-3 bg-milk/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-medium text-espresso shadow-sm flex items-center gap-1 border border-seam">
+                <span>almaeskorte.hu</span>
+                <span class="text-caramel-600 font-bold">↗</span>
+              </div>
+            </div>
+            <div class="font-serif text-xl font-medium text-espresso" data-i18n="hero_alma_title">Heritage dining house in Budapest's Palace District</div>
+            <p class="text-xs text-espresso-secondary mt-1 font-light" data-i18n="hero_alma_sub">OpenTable online booking, curated wine list, bilingual EN/HU</p>
+          </a>
+
+          <!-- Box 3: Akbermet Portfolio -->
+          <a href="https://akbermet-work.github.io/" target="_blank" class="group rounded-3xl bg-milk border border-seam p-6 shadow-luxury hover:border-seam-caramel transition-all flex flex-col justify-between flex-1">
+            <div class="flex items-center justify-between pb-3 hairline-b mb-4 text-xs text-espresso-muted">
+              <span class="font-serif italic text-lg font-medium text-espresso">Akbermet</span>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-caramel-700 font-semibold bg-caramel-100/60 px-2.5 py-0.5 rounded-full border border-seam-caramel">Creator Portfolio</span>
+            </div>
+            <div class="img-zoom-container rounded-2xl bg-espresso overflow-hidden aspect-[16/9] relative mb-4 flex items-center justify-center p-4 border border-seam">
+              <img src="https://akbermet-work.github.io/assets/web/bending_photo.png" alt="Akbermet Creative Portfolio" class="h-full object-contain" loading="lazy">
+              <div class="absolute bottom-3 left-3 bg-milk/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-medium text-espresso shadow-sm flex items-center gap-1 border border-seam">
+                <span>akbermet-work.github.io</span>
+                <span class="text-caramel-600 font-bold">↗</span>
+              </div>
+            </div>
+            <div class="font-serif text-xl font-medium text-espresso" data-i18n="hero_akb_title">Portfolio for content strategist & creative producer</div>
+            <p class="text-xs text-espresso-secondary mt-1 font-light" data-i18n="hero_akb_sub">Interactive PDF case studies, brand storytelling, lean code</p>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SELECTED WORKS (EDITORIAL LUXURY DEEP DIVE)
+    ══════════════════════════════════════ -->
+    <section id="works" class="py-24 hairline-t bg-ivory-paper/60">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 hairline-b">
+          <div>
+            <span class="text-[11px] uppercase tracking-[0.25em] text-caramel-700 font-semibold" data-i18n="works_subtitle">Selected Works</span>
+            <h2 class="font-serif text-4xl sm:text-6xl font-normal text-espresso mt-2" data-i18n="works_title">Websites Performing in the Real World</h2>
+          </div>
+          <p class="text-sm text-espresso-secondary max-w-md font-light leading-relaxed" data-i18n="works_desc">
+            Every project is engineered from a clean slate for its exact audience. Zero generic templates, with thorough focus on hospitality, branding, and guest flows.
+          </p>
+        </div>
+
+        <!-- Project 1: Cirkusz Budapest -->
+        <div class="rounded-3xl bg-milk border border-seam p-8 sm:p-12 mb-12 shadow-luxury">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-6 space-y-6">
+              <div class="flex items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-caramel-100/50 border border-seam-caramel text-caramel-700 font-medium">
+                  01 / Hospitality & Brunch
+                </span>
+                <span class="text-xs text-espresso-muted">Budapest, VII. kerület</span>
+              </div>
+
+              <h3 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+                Cirkusz Budapest
+              </h3>
+
+              <p class="text-espresso-secondary text-sm sm:text-base leading-relaxed font-light" data-i18n="case_cirkusz_text">
+                Budapest's iconic brunch sanctuary in the Jewish Quarter («Work Hard, Brunch Harder»). The objective was to instantly convey the venue's vibrant pulse, offer guests a responsive digital menu with allergen filters, showcase Bagira specialty coffee, and streamline table turnover.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4 py-3 border-y border-seam text-xs">
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_features">Core Capabilities</div>
+                  <div class="text-espresso font-medium" data-i18n="case_cirkusz_feat">Responsive digital menu, allergen filters, specials</div>
+                </div>
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_perf">Performance</div>
+                  <div class="text-caramel-700 font-semibold" data-i18n="case_cirkusz_speed">0.4s cellular load time (LTE)</div>
+                </div>
+              </div>
+
+              <div>
+                <a href="http://www.cirkuszbp.hu/" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-espresso hover:text-caramel-600 transition-colors group">
+                  <span data-i18n="btn_open_live">Visit live website: cirkuszbp.hu</span>
+                  <span class="group-hover:translate-x-1 transition-transform text-caramel-600">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-ivory-canvas border border-seam">
+                  <img src="https://www.cirkuszbp.hu/img/260415%20DF%20Cirkusz0823.jpg" alt="Cirkusz Dishes" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-ivory-canvas border border-seam">
+                  <img src="https://www.cirkuszbp.hu/img/ml_210918_047.jpg" alt="Cirkusz Atmosphere" class="w-full h-full object-cover" loading="lazy">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 2: Alma & Körte Restaurant -->
+        <div class="rounded-3xl bg-milk border border-seam p-8 sm:p-12 mb-12 shadow-luxury">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-6 order-2 lg:order-1">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-ivory-canvas border border-seam">
+                  <img src="https://almaeskorte.hu/Media/fb_aandk.jpg" alt="Alma & Körte Interior" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-ivory-canvas border border-seam">
+                  <img src="https://almaeskorte.hu/Media/etelek.jpg" alt="Alma & Körte Dishes" class="w-full h-full object-cover" loading="lazy">
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
+              <div class="flex items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-caramel-100/50 border border-seam-caramel text-caramel-700 font-medium">
+                  02 / Fine Dining & Wine
+                </span>
+                <span class="text-xs text-espresso-muted">Budapest, Palotanegyed</span>
+              </div>
+
+              <h3 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+                Alma & Körte Restaurant
+              </h3>
+
+              <p class="text-espresso-secondary text-sm sm:text-base leading-relaxed font-light" data-i18n="case_alma_text">
+                A family-run Hungarian & Mediterranean dining house in Budapest's historic Palace District. The site balances heritage dining charm, a curated wine collection, and seamless OpenTable reservations for international and local guests.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4 py-3 border-y border-seam text-xs">
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_features">Core Capabilities</div>
+                  <div class="text-espresso font-medium" data-i18n="case_alma_feat">OpenTable table reservations, bilingual EN / HU</div>
+                </div>
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_seo">Local Presence</div>
+                  <div class="text-espresso font-medium" data-i18n="case_alma_local">Gault & Millau listing, Google Maps SEO</div>
+                </div>
+              </div>
+
+              <div>
+                <a href="https://almaeskorte.hu/indexEN.html" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-espresso hover:text-caramel-600 transition-colors group">
+                  <span data-i18n="btn_open_live_alma">Visit live website: almaeskorte.hu</span>
+                  <span class="group-hover:translate-x-1 transition-transform text-caramel-600">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 3: Akbermet Creative Portfolio -->
+        <div class="rounded-3xl bg-milk border border-seam p-8 sm:p-12 shadow-luxury">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-6 space-y-6">
+              <div class="flex items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-caramel-100/50 border border-seam-caramel text-caramel-700 font-medium">
+                  03 / Personal Brand & Creative Direction
+                </span>
+                <span class="text-xs text-espresso-muted">Warsaw / International</span>
+              </div>
+
+              <h3 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+                Akbermet Portfolio
+              </h3>
+
+              <p class="text-espresso-secondary text-sm sm:text-base leading-relaxed font-light" data-i18n="case_akb_text">
+                Minimalist portfolio for a content strategist & creative producer. Magazine-grade editorial aesthetic, interactive PDF case studies (Locals, Nomad Connect, AI Project), one-click CV downloads, and zero-latency CDN hosting.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4 py-3 border-y border-seam text-xs">
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_features">Core Capabilities</div>
+                  <div class="text-espresso font-medium" data-i18n="case_akb_feat">Interactive PDF case archives, bespoke typography</div>
+                </div>
+                <div>
+                  <div class="text-espresso-muted uppercase tracking-wider font-semibold mb-1" data-i18n="case_col_infra">Infrastructure</div>
+                  <div class="text-espresso font-medium" data-i18n="case_akb_infra">Free lifetime GitHub Pages hosting</div>
+                </div>
+              </div>
+
+              <div>
+                <a href="https://akbermet-work.github.io/" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-espresso hover:text-caramel-600 transition-colors group">
+                  <span data-i18n="btn_open_live_akb">Visit live website: akbermet-work.github.io</span>
+                  <span class="group-hover:translate-x-1 transition-transform text-caramel-600">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-espresso border border-seam flex items-center justify-center p-3">
+                  <img src="https://akbermet-work.github.io/assets/web/akber.png" alt="Akbermet Portrait" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="img-zoom-container rounded-2xl overflow-hidden aspect-[4/5] bg-ivory-canvas border border-seam flex items-center justify-center p-3">
+                  <img src="https://akbermet-work.github.io/assets/web/projects/locals-thumb.png" alt="Locals Case Study" class="w-full h-full object-contain" loading="lazy">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PHILOSOPHY: THE LUXURY CRAFT
+    ══════════════════════════════════════ -->
+    <section id="philosophy" class="py-24 max-w-7xl mx-auto px-6 sm:px-10">
+      
+      <div class="max-w-3xl mb-16">
+        <span class="text-[11px] uppercase tracking-[0.25em] text-caramel-700 font-semibold" data-i18n="phil_subtitle">Craft Standards</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-espresso mt-2 mb-6 font-normal leading-tight" data-i18n="phil_title">
+          Why Visual Quality Out-converts Loud Marketing
+        </h2>
+        <p class="text-espresso-secondary text-base leading-relaxed font-light" data-i18n="phil_desc">
+          In distinctive businesses, trust is formed within the first three seconds. Discerning clients judge composure, font hierarchy, cellular speed, and the complete absence of template artifacts.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="p-8 rounded-3xl bg-milk border border-seam space-y-4 shadow-luxury">
+          <div class="font-serif italic text-4xl text-caramel-600">01</div>
+          <h3 class="font-serif text-2xl text-espresso font-medium" data-i18n="phil_1_t">European Editorial Typography</h3>
+          <p class="text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="phil_1_d">
+            No stock font pairings. Considered proportions, line balance, and breathing room deliver the quiet confidence of a printed monograph, setting you apart instantly.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-milk border border-seam space-y-4 shadow-luxury">
+          <div class="font-serif italic text-4xl text-caramel-600">02</div>
+          <h3 class="font-serif text-2xl text-espresso font-medium" data-i18n="phil_2_t">Clean Code vs. Builder Bloat</h3>
+          <p class="text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="phil_2_d">
+            Platforms like Wix or Tilda inject up to 10MB of overhead. We write lean, hand-tailored markup so your pages load instantaneously on any cellular network.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-milk border border-seam space-y-4 shadow-luxury">
+          <div class="font-serif italic text-4xl text-caramel-600">03</div>
+          <h3 class="font-serif text-2xl text-espresso font-medium" data-i18n="phil_3_t">Tactile Mobile Precision</h3>
+          <p class="text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="phil_3_d">
+            85% of restaurant bookings and portfolio inquiries originate from smartphones. We engineer touch targets and fluid gestures for natural thumb navigation.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SERVICES LIST
+    ══════════════════════════════════════ -->
+    <section id="services" class="py-24 hairline-t bg-ivory-paper/50">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 hairline-b">
+          <div>
+            <span class="text-[11px] uppercase tracking-[0.25em] text-caramel-700 font-semibold" data-i18n="srv_subtitle">Capabilities</span>
+            <h2 class="font-serif text-4xl sm:text-6xl text-espresso mt-2 font-normal" data-i18n="srv_title">What We Design & Build</h2>
+          </div>
+          <p class="text-sm text-espresso-secondary max-w-sm font-light leading-relaxed" data-i18n="srv_desc">
+            Comprehensive delivery: from structural strategy and copy to code, domain orchestration, and reservation integrations.
+          </p>
+        </div>
+
+        <div class="divide-y divide-seam">
+          
+          <!-- Item 1 -->
+          <div class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-milk/60 transition-colors px-4 rounded-2xl">
+            <div class="md:col-span-1 font-serif text-2xl text-espresso-muted">01</div>
+            <div class="md:col-span-5">
+              <h3 class="font-serif text-3xl text-espresso mb-1 font-medium" data-i18n="srv_1_name">Hospitality, Dining & Specialty Cafes (HoReCa)</h3>
+              <div class="text-xs font-mono uppercase tracking-wider text-caramel-700 font-semibold" data-i18n="srv_1_time">Timeline: 5–9 days • from €690</div>
+            </div>
+            <div class="md:col-span-6 text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="srv_1_body">
+              Responsive digital menus with allergen filtering, OpenTable / Telegram table reservation flows, curated wine lists, high-definition photography, and Google Maps local SEO.
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-milk/60 transition-colors px-4 rounded-2xl">
+            <div class="md:col-span-1 font-serif text-2xl text-espresso-muted">02</div>
+            <div class="md:col-span-5">
+              <h3 class="font-serif text-3xl text-espresso mb-1 font-medium" data-i18n="srv_2_name">High-Impact Landing Pages</h3>
+              <div class="text-xs font-mono uppercase tracking-wider text-caramel-700 font-semibold" data-i18n="srv_2_time">Timeline: 3–5 days • from €390</div>
+            </div>
+            <div class="md:col-span-6 text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="srv_2_body">
+              Focused single-page destinations for new service launches, product rollouts, or ticketed experiences. High conversion rates engineered without marketing fluff.
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-milk/60 transition-colors px-4 rounded-2xl">
+            <div class="md:col-span-1 font-serif text-2xl text-espresso-muted">03</div>
+            <div class="md:col-span-5">
+              <h3 class="font-serif text-3xl text-espresso mb-1 font-medium" data-i18n="srv_3_name">Multi-page Corporate & Studio Platforms</h3>
+              <div class="text-xs font-mono uppercase tracking-wider text-caramel-700 font-semibold" data-i18n="srv_3_time">Timeline: 7–14 days • from €990</div>
+            </div>
+            <div class="md:col-span-6 text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="srv_3_body">
+              Comprehensive digital presence for service firms, medical practices, and creative agencies. Detailed service architecture, case archives, and search indexing.
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-milk/60 transition-colors px-4 rounded-2xl">
+            <div class="md:col-span-1 font-serif text-2xl text-espresso-muted">04</div>
+            <div class="md:col-span-5">
+              <h3 class="font-serif text-3xl text-espresso mb-1 font-medium" data-i18n="srv_4_name">Personal Brand & Creative Portfolios</h3>
+              <div class="text-xs font-mono uppercase tracking-wider text-caramel-700 font-semibold" data-i18n="srv_4_time">Timeline: 3–7 days • from €350</div>
+            </div>
+            <div class="md:col-span-6 text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="srv_4_body">
+              Bespoke portfolios for authors, designers, consultants, and founders aiming for international caliber. Free lifetime GitHub Pages hosting included.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         ESTIMATOR: CARAMEL-MILK CONCIERGE CALCULATOR
+    ══════════════════════════════════════ -->
+    <section id="calculator" class="py-24 hairline-t">
+      <div class="max-w-4xl mx-auto px-6 sm:px-10">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-[11px] uppercase tracking-[0.25em] text-caramel-700 font-semibold" data-i18n="calc_pill">Transparent Pricing</span>
+          <h2 class="font-serif text-4xl sm:text-5xl text-espresso mt-2 mb-3 font-normal" data-i18n="calc_h2">Project Budget Estimator</h2>
+          <p class="text-sm text-espresso-secondary font-light" data-i18n="calc_sub">
+            Choose your format and optional capabilities for an immediate baseline estimate.
+          </p>
+        </div>
+
+        <!-- Calculator Card in Milk with Caramel accents -->
+        <div class="bg-milk border border-seam rounded-3xl p-8 sm:p-12 shadow-luxury">
+          
+          <!-- Project Type -->
+          <div class="mb-10">
+            <label class="block text-xs uppercase tracking-[0.2em] font-semibold text-espresso-muted mb-4" data-i18n="calc_f1_title">1. Project Scope</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              
+              <label class="relative flex items-center p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <input type="radio" name="calc_type" value="390" checked onchange="updateCalc()" class="h-4 w-4 text-caramel-600 border-seam focus:ring-0">
+                <div class="ml-3">
+                  <div class="text-sm font-serif text-lg font-medium text-espresso" data-i18n="calc_t_land">Landing / Single Page</div>
+                  <div class="text-xs text-espresso-muted font-light" data-i18n="calc_t_land_sub">1 page • from €390</div>
+                </div>
+              </label>
+
+              <label class="relative flex items-center p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <input type="radio" name="calc_type" value="690" onchange="updateCalc()" class="h-4 w-4 text-caramel-600 border-seam focus:ring-0">
+                <div class="ml-3">
+                  <div class="text-sm font-serif text-lg font-medium text-espresso" data-i18n="calc_t_rest">Restaurant or Cafe Site</div>
+                  <div class="text-xs text-espresso-muted font-light" data-i18n="calc_t_rest_sub">Menu, booking, maps • from €690</div>
+                </div>
+              </label>
+
+              <label class="relative flex items-center p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <input type="radio" name="calc_type" value="990" onchange="updateCalc()" class="h-4 w-4 text-caramel-600 border-seam focus:ring-0">
+                <div class="ml-3">
+                  <div class="text-sm font-serif text-lg font-medium text-espresso" data-i18n="calc_t_biz">Multi-page Business Platform</div>
+                  <div class="text-xs text-espresso-muted font-light" data-i18n="calc_t_biz_sub">Services catalog, cases • from €990</div>
+                </div>
+              </label>
+
+              <label class="relative flex items-center p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <input type="radio" name="calc_type" value="350" onchange="updateCalc()" class="h-4 w-4 text-caramel-600 border-seam focus:ring-0">
+                <div class="ml-3">
+                  <div class="text-sm font-serif text-lg font-medium text-espresso" data-i18n="calc_t_port">Portfolio / Personal Brand</div>
+                  <div class="text-xs text-espresso-muted font-light" data-i18n="calc_t_port_sub">Cases, storytelling • from €350</div>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Addons -->
+          <div class="mb-10">
+            <label class="block text-xs uppercase tracking-[0.2em] font-semibold text-espresso-muted mb-4" data-i18n="calc_f2_title">2. Optional Capabilities</label>
+            <div class="space-y-3">
+              
+              <label class="flex items-center justify-between p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <div class="flex items-center">
+                  <input type="checkbox" id="add-lang" value="120" onchange="updateCalc()" class="h-4 w-4 rounded text-caramel-600 border-seam focus:ring-0">
+                  <div class="ml-3">
+                    <span class="text-sm font-medium text-espresso" data-i18n="calc_a_lang">Bilingual Architecture</span>
+                    <span class="text-xs text-espresso-muted block font-light" data-i18n="calc_a_lang_d">Secondary language (English, Magyar) with instant switcher</span>
+                  </div>
+                </div>
+                <span class="text-xs font-mono font-semibold text-caramel-700">+€120</span>
+              </label>
+
+              <label class="flex items-center justify-between p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <div class="flex items-center">
+                  <input type="checkbox" id="add-tg" value="80" checked onchange="updateCalc()" class="h-4 w-4 rounded text-caramel-600 border-seam focus:ring-0">
+                  <div class="ml-3">
+                    <span class="text-sm font-medium text-espresso" data-i18n="calc_a_tg">Instant Telegram Lead Notifications</span>
+                    <span class="text-xs text-espresso-muted block font-light" data-i18n="calc_a_tg_d">Immediate push notifications for every reservation or inquiry</span>
+                  </div>
+                </div>
+                <span class="text-xs font-mono font-semibold text-caramel-700">+€80</span>
+              </label>
+
+              <label class="flex items-center justify-between p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <div class="flex items-center">
+                  <input type="checkbox" id="add-seo" value="90" onchange="updateCalc()" class="h-4 w-4 rounded text-caramel-600 border-seam focus:ring-0">
+                  <div class="ml-3">
+                    <span class="text-sm font-medium text-espresso" data-i18n="calc_a_seo">Local SEO & Google Business Sync</span>
+                    <span class="text-xs text-espresso-muted block font-light" data-i18n="calc_a_seo_d">Google Maps card optimization, schema.org structured data</span>
+                  </div>
+                </div>
+                <span class="text-xs font-mono font-semibold text-caramel-700">+€90</span>
+              </label>
+
+              <label class="flex items-center justify-between p-4 rounded-2xl border border-seam bg-ivory/50 cursor-pointer hover:border-caramel-500 transition-all">
+                <div class="flex items-center">
+                  <input type="checkbox" id="add-copy" value="110" onchange="updateCalc()" class="h-4 w-4 rounded text-caramel-600 border-seam focus:ring-0">
+                  <div class="ml-3">
+                    <span class="text-sm font-medium text-espresso" data-i18n="calc_a_copy">Editorial Copywriting</span>
+                    <span class="text-xs text-espresso-muted block font-light" data-i18n="calc_a_copy_d">Bespoke narrative, menu structuring, and punchy headlines</span>
+                  </div>
+                </div>
+                <span class="text-xs font-mono font-semibold text-caramel-700">+€110</span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Total Result Bar in Warm Caramel Latte -->
+          <div class="p-6 sm:p-8 rounded-2xl bg-caramel-50 border border-seam-caramel flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.2em] font-semibold text-caramel-700" data-i18n="calc_total_title">Estimated Investment</span>
+              <div class="flex items-baseline gap-3 mt-1">
+                <span id="price-eur" class="font-serif text-5xl font-semibold text-espresso">€470</span>
+                <span id="price-huf" class="text-xs font-mono text-espresso-muted">≈ 185 000 Ft</span>
+              </div>
+              <div class="text-[11px] text-caramel-700 mt-1 font-medium" data-i18n="calc_note">✓ Zero recurring hosting subscriptions included</div>
+            </div>
+
+            <a id="btn-calc-tg" href="https://t.me/dizbalanser" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-espresso hover:bg-caramel-600 text-milk font-medium text-xs uppercase tracking-wider transition-all shadow-sm">
+              <span data-i18n="calc_btn_send">Send Quote to Telegram</span>
+              <span class="text-caramel-200">→</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CONTACT & INQUIRY
+    ══════════════════════════════════════ -->
+    <section id="contact" class="py-24 hairline-t bg-ivory-paper/50">
+      <div class="max-w-5xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left Contacts -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <span class="text-[11px] uppercase tracking-[0.25em] text-caramel-700 font-semibold" data-i18n="cnt_pill">Initiate Conversation</span>
+              <h2 class="font-serif text-4xl sm:text-5xl text-espresso mt-2 mb-4 font-normal" data-i18n="cnt_title">Let's Build Something Exceptional</h2>
+              <p class="text-sm text-espresso-secondary leading-relaxed font-light" data-i18n="cnt_desc">
+                Reach out directly via Telegram, WhatsApp, or the inquiry form. We'll reply within a couple of hours with straightforward next steps.
+              </p>
+            </div>
+
+            <div class="space-y-3 pt-4 border-t border-seam text-sm">
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-milk border border-seam">
+                <span class="text-espresso-muted text-xs uppercase tracking-wider">Telegram:</span>
+                <a href="https://t.me/dizbalanser" target="_blank" class="font-semibold text-espresso hover:text-caramel-600">@dizbalanser ↗</a>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-milk border border-seam">
+                <span class="text-espresso-muted text-xs uppercase tracking-wider">WhatsApp:</span>
+                <a href="https://wa.me/36303879841" target="_blank" class="font-semibold text-espresso hover:text-caramel-600">+36 30 387 9841 ↗</a>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-milk border border-seam">
+                <span class="text-espresso-muted text-xs uppercase tracking-wider">Email:</span>
+                <a href="mailto:work.sanatbek@gmail.com" class="font-semibold text-espresso hover:text-caramel-600">work.sanatbek@gmail.com</a>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-milk border border-seam">
+                <span class="text-espresso-muted text-xs uppercase tracking-wider" data-i18n="cnt_loc_label">Location:</span>
+                <span class="text-espresso font-medium" data-i18n="cnt_loc_val">Budapest, Hungary 🇭🇺</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Form in Warm Milk Surface -->
+          <div class="lg:col-span-7">
+            <div class="bg-milk border border-seam rounded-3xl p-8 sm:p-10 shadow-luxury">
+              <form onsubmit="sendInquiry(event)" class="space-y-4">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-espresso-muted mb-2" data-i18n="f_name">Your Name *</label>
+                    <input type="text" id="inquiry-name" required placeholder="Sanatbek" class="w-full px-4 py-3 rounded-xl border border-seam bg-ivory/60 text-espresso text-sm focus:outline-none focus:border-caramel-500">
+                  </div>
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-espresso-muted mb-2" data-i18n="f_contact">Telegram or Phone *</label>
+                    <input type="text" id="inquiry-contact" required placeholder="@username or +36..." class="w-full px-4 py-3 rounded-xl border border-seam bg-ivory/60 text-espresso text-sm focus:outline-none focus:border-caramel-500">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-semibold text-espresso-muted mb-2" data-i18n="f_type">Project Category</label>
+                  <select id="inquiry-type" class="w-full px-4 py-3 rounded-xl border border-seam bg-ivory/60 text-espresso text-sm focus:outline-none focus:border-caramel-500">
+                    <option value="Restaurant / Cafe / HoReCa">Restaurant / Cafe / Bar (HoReCa)</option>
+                    <option value="Landing / Single Page">High-Impact Landing Page</option>
+                    <option value="Multi-page Business Platform">Multi-page Business Platform</option>
+                    <option value="Portfolio / Personal Brand">Portfolio / Personal Brand</option>
+                    <option value="Custom Project">Bespoke Project</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-semibold text-espresso-muted mb-2" data-i18n="f_notes">Project Notes (references, timeline)</label>
+                  <textarea id="inquiry-notes" rows="3" placeholder="Tell us about your venue, brand, or requirements..." class="w-full px-4 py-3 rounded-xl border border-seam bg-ivory/60 text-espresso text-sm focus:outline-none focus:border-caramel-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-full bg-espresso hover:bg-caramel-600 text-milk font-medium text-xs uppercase tracking-wider transition-all shadow-sm">
+                  <span data-i18n="f_submit">Send Inquiry via Telegram →</span>
+                </button>
+
+                <p class="text-[11px] text-center text-espresso-muted font-light" data-i18n="f_subnote">
+                  Strictly confidential. Direct response within 1–2 hours.
+                </p>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="hairline-t py-12 bg-milk text-xs text-espresso-muted">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-2">
+        <span class="font-serif font-semibold text-espresso text-sm">DizBalanser Studio</span>
+        <span data-i18n="footer_text">— Crafted with care in Budapest 🇭🇺</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="https://t.me/dizbalanser" target="_blank" class="hover:text-espresso transition-colors">Telegram</a>
+        <a href="https://github.com/DizBalanser" target="_blank" class="hover:text-espresso transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/dizbalanser" target="_blank" class="hover:text-espresso transition-colors">LinkedIn</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT: I18N (EN & HU & RU)
+  ══════════════════════════════════════ -->
+  <script>
+    const dictionary = {
+      // ══════════════════════════════════
+      // ENGLISH (DEFAULT)
+      // ══════════════════════════════════
+      en: {
+        nav_city: "Budapest, HU • Available",
+        nav_works: "Works",
+        nav_craft: "Craft",
+        nav_services: "Services",
+        nav_pricing: "Pricing",
+        nav_contact: "Contact",
+        nav_discuss: "Start a Project",
+        
+        hero_pill: "Bespoke Web Design & Engineering Studio",
+        hero_meta: "Budapest, Hungary • Central Europe • Worldwide Remote",
+        hero_h1_prefix: "Websites that convey your",
+        hero_h1_accent: " taste and caliber ",
+        hero_h1_suffix: "without saying a word.",
+        hero_desc: "Crafting distinctive digital spaces for restaurants, independent businesses, and personal brands. Refined editorial typography, clean engineering without bulky builders, and sub-second rendering on smartphones.",
+        hero_btn_discuss: "Discuss on Telegram",
+        hero_btn_works: "View Selected Works",
+        
+        hero_cirkusz_title: "Atmospheric web experience for Budapest's iconic brunch spot",
+        hero_cirkusz_sub: "Digital menu, allergen filters, Bagira coffee, &lt;0.4s load speed",
+        hero_alma_title: "Heritage dining house in Budapest's Palace District",
+        hero_alma_sub: "OpenTable online booking, curated wine list, bilingual EN/HU",
+        hero_akb_title: "Portfolio for content strategist & creative producer",
+        hero_akb_sub: "Interactive PDF case studies, brand storytelling, lean code",
+        
+        works_subtitle: "Selected Works",
+        works_title: "Websites Performing in the Real World",
+        works_desc: "Every project is engineered from a clean slate for its exact audience. Zero generic templates, with thorough focus on hospitality, branding, and guest flows.",
+        
+        case_cirkusz_text: "Budapest's iconic brunch sanctuary in the Jewish Quarter («Work Hard, Brunch Harder»). The objective was to instantly convey the venue's vibrant pulse, offer guests a responsive digital menu with allergen filters, showcase Bagira specialty coffee, and streamline table turnover.",
+        case_col_features: "Core Capabilities",
+        case_cirkusz_feat: "Responsive digital menu, allergen filters, specials",
+        case_col_perf: "Performance",
+        case_cirkusz_speed: "0.4s cellular load time (LTE)",
+        btn_open_live: "Visit live website: cirkuszbp.hu",
+        
+        case_alma_text: "A family-run Hungarian & Mediterranean dining house in Budapest's historic Palace District. The site balances heritage dining charm, a curated wine collection, and seamless OpenTable reservations for international and local guests.",
+        case_alma_feat: "OpenTable table reservations, bilingual EN / HU",
+        case_col_seo: "Local Presence",
+        case_alma_local: "Gault & Millau listing, Google Maps SEO",
+        btn_open_live_alma: "Visit live website: almaeskorte.hu",
+        
+        case_akb_text: "Minimalist portfolio for a content strategist & creative producer. Magazine-grade editorial aesthetic, interactive PDF case studies (Locals, Nomad Connect, AI Project), one-click CV downloads, and zero-latency CDN hosting.",
+        case_akb_feat: "Interactive PDF case archives, bespoke typography",
+        case_col_infra: "Infrastructure",
+        case_akb_infra: "Free lifetime GitHub Pages hosting",
+        btn_open_live_akb: "Visit live website: akbermet-work.github.io",
+        
+        phil_subtitle: "Craft Standards",
+        phil_title: "Why Visual Quality Out-converts Loud Marketing",
+        phil_desc: "In distinctive businesses, trust is formed within the first three seconds. Discerning clients judge composure, font hierarchy, cellular speed, and the complete absence of template artifacts.",
+        phil_1_t: "European Editorial Typography",
+        phil_1_d: "No stock font pairings. Considered proportions, line balance, and breathing room deliver the quiet confidence of a printed monograph, setting you apart instantly.",
+        phil_2_t: "Clean Code vs. Builder Bloat",
+        phil_2_d: "Platforms like Wix or Tilda inject up to 10MB of overhead. We write lean, hand-tailored markup so your pages load instantaneously on any cellular network.",
+        phil_3_t: "Tactile Mobile Precision",
+        phil_3_d: "85% of restaurant bookings and portfolio inquiries originate from smartphones. We engineer touch targets and fluid gestures for natural thumb navigation.",
+        
+        srv_subtitle: "Capabilities",
+        srv_title: "What We Design & Build",
+        srv_desc: "Comprehensive delivery: from structural strategy and copy to code, domain orchestration, and reservation integrations.",
+        srv_1_name: "Hospitality, Dining & Specialty Cafes (HoReCa)",
+        srv_1_time: "Timeline: 5–9 days • from €690",
+        srv_1_body: "Responsive digital menus with allergen filtering, OpenTable / Telegram table reservation flows, curated wine lists, high-definition photography, and Google Maps local SEO.",
+        srv_2_name: "High-Impact Landing Pages",
+        srv_2_time: "Timeline: 3–5 days • from €390",
+        srv_2_body: "Focused single-page destinations for new service launches, product rollouts, or ticketed experiences. High conversion rates engineered without marketing fluff.",
+        srv_3_name: "Multi-page Corporate & Studio Platforms",
+        srv_3_time: "Timeline: 7–14 days • from €990",
+        srv_3_body: "Comprehensive digital presence for service firms, medical practices, and creative agencies. Detailed service architecture, case archives, and search indexing.",
+        srv_4_name: "Personal Brand & Creative Portfolios",
+        srv_4_time: "Timeline: 3–7 days • from €350",
+        srv_4_body: "Bespoke portfolios for authors, designers, consultants, and founders aiming for international caliber. Free lifetime GitHub Pages hosting included.",
+        
+        calc_pill: "Transparent Pricing",
+        calc_h2: "Project Budget Estimator",
+        calc_sub: "Choose your format and optional capabilities for an immediate baseline estimate.",
+        calc_f1_title: "1. Project Scope",
+        calc_t_land: "Landing / Single Page",
+        calc_t_land_sub: "1 page • from €390",
+        calc_t_rest: "Restaurant or Cafe Site",
+        calc_t_rest_sub: "Menu, booking, maps • from €690",
+        calc_t_biz: "Multi-page Business Platform",
+        calc_t_biz_sub: "Services catalog, cases • from €990",
+        calc_t_port: "Portfolio / Personal Brand",
+        calc_t_port_sub: "Cases, storytelling • from €350",
+        calc_f2_title: "2. Optional Capabilities",
+        calc_a_lang: "Bilingual Architecture",
+        calc_a_lang_d: "Secondary language (English, Magyar) with instant switcher",
+        calc_a_tg: "Instant Telegram Lead Notifications",
+        calc_a_tg_d: "Immediate mobile push notifications for every reservation or inquiry",
+        calc_a_seo: "Local SEO & Google Business Sync",
+        calc_a_seo_d: "Google Maps card optimization, schema.org structured data",
+        calc_a_copy: "Editorial Copywriting",
+        calc_a_copy_d: "Bespoke narrative, menu structuring, and punchy headlines",
+        calc_total_title: "Estimated Investment",
+        calc_note: "✓ Zero recurring hosting subscriptions included",
+        calc_btn_send: "Send Quote to Telegram",
+        
+        cnt_pill: "Initiate Conversation",
+        cnt_title: "Let's Build Something Exceptional",
+        cnt_desc: "Reach out directly via Telegram, WhatsApp, or the inquiry form. We'll reply within a couple of hours with straightforward next steps.",
+        cnt_loc_label: "Location:",
+        cnt_loc_val: "Budapest, Hungary 🇭🇺",
+        f_name: "Your Name *",
+        f_contact: "Telegram or Phone *",
+        f_type: "Project Category",
+        f_notes: "Project Notes (references, timeline)",
+        f_submit: "Send Inquiry via Telegram →",
+        f_subnote: "Strictly confidential. Direct response within 1–2 hours.",
+        footer_text: "— Crafted with care in Budapest 🇭🇺"
+      },
+
+      // ══════════════════════════════════
+      // HUNGARIAN / MAGYAR
+      // ══════════════════════════════════
+      hu: {
+        nav_city: "Budapest, HU • Elérhető",
+        nav_works: "Munkáink",
+        nav_craft: "Minőség",
+        nav_services: "Szolgáltatások",
+        nav_pricing: "Árak",
+        nav_contact: "Kapcsolat",
+        nav_discuss: "Ajánlatkérés",
+        
+        hero_pill: "Egyedi Webdesign & Fejlesztő Műhely",
+        hero_meta: "Budapest, Magyarország • Közép-Európa • Nemzetközi szint",
+        hero_h1_prefix: "Weboldalak, amelyek a legmagasabb",
+        hero_h1_accent: " minőségről és ízlésről ",
+        hero_h1_suffix: "tanúskodnak felesleges szavak nélkül.",
+        hero_desc: "Kézműves digitális felületek éttermeknek, igényes vállalkozásoknak és egyéni márkáknak. Finom tipográfia, tiszta forráskód nehézkes sablonok nélkül, és másodperc alatti mobilos betöltési sebesség.",
+        hero_btn_discuss: "Megbeszélés Telegramon",
+        hero_btn_works: "Munkáink megtekintése",
+        
+        hero_cirkusz_title: "Hangulatos digitális élmény Budapest ikonikus reggelizőjének",
+        hero_cirkusz_sub: "Digitális étlap, allergénszűrők, Bagira kávé, &lt;0.4s betöltési idő",
+        hero_alma_title: "Tradicionális borétterem a Palotanegyed szívében",
+        hero_alma_sub: "OpenTable asztalfoglalás, válogatott borlap, kétnyelvű EN/HU",
+        hero_akb_title: "Portfólió tartalomstratéga és kreatív producer számára",
+        hero_akb_sub: "Interaktív PDF projektek, vizuális történetmesélés, tiszta kód",
+        
+        works_subtitle: "Kiemelt Projektek",
+        works_title: "Weboldalak, amelyek a valóságban teljesítenek",
+        works_desc: "Minden projektet tiszta lappal tervezünk meg a célközönség igényeire szabva. Sablonmentes megközelítés, kiemelt figyelemmel a gasztronómiára és a vendégélményre.",
+        
+        case_cirkusz_text: "Budapest kultikus reggelizőhelye a Zsidónegyed szívében («Work Hard, Brunch Harder»). A cél a hely pezsgő atmoszférájának átadása, reszponzív digitális étlap allergénszűrőkkel, a saját pörkölésű Bagira kávé bemutatása és az asztalfoglalási folyamat egyszerűsítése.",
+        case_col_features: "Főbb funkciók",
+        case_cirkusz_feat: "Reszponzív étlap, allergénszűrők, ajánlatok",
+        case_col_perf: "Teljesítmény",
+        case_cirkusz_speed: "0.4s mobil betöltési sebesség (LTE)",
+        btn_open_live: "Weboldal megnyitása: cirkuszbp.hu",
+        
+        case_alma_text: "Családi hangulatú magyar és mediterrán étterem Budapest történelmi Palotanegyedében. A weboldal harmonikusan ötvözi az otthonos vendéglátást, a borlap bemutatását és a zökkenőmentes OpenTable asztalfoglalást a külföldi és hazai vendégek számára.",
+        case_alma_feat: "OpenTable asztalfoglalás, kétnyelvű EN / HU",
+        case_col_seo: "Helyi jelenlét",
+        case_alma_local: "Gault & Millau minősítés, Google Térkép SEO",
+        btn_open_live_alma: "Weboldal megnyitása: almaeskorte.hu",
+        
+        case_akb_text: "Minimalista portfólió tartalomstratéga és kreatív producer számára. Nemzetközi magazinszintű esztétika, interaktív PDF projektbemutatók (Locals, Nomad Connect, AI Project), egykattintásos CV letöltés és ingyenes, villámgyors GitHub Pages tárhely.",
+        case_akb_feat: "Interaktív PDF projektek, prémium tipográfia",
+        case_col_infra: "Infrastruktúra",
+        case_akb_infra: "Ingyenes örökös GitHub Pages tárhely",
+        btn_open_live_akb: "Weboldal megnyitása: akbermet-work.github.io",
+        
+        phil_subtitle: "Minőségi Standardok",
+        phil_title: "Miért ad el a vizuális minőség jobban a hangos marketingnél?",
+        phil_desc: "A prémium szegmensben a bizalom az első 3 másodpercben dől el. Az igényes ügyfél a harmóniát, a betűkészletet, a mobilos gördülékenységet és a sablonosság teljes hiányát értékeli.",
+        phil_1_t: "Európai szintű tipográfia",
+        phil_1_d: "Nincsenek tucat-betűtípusok. Az arányok, a sorközök és a térközök a nyomtatott magazinok eleganciáját és nyugodt magabiztosságát sugározzák.",
+        phil_2_t: "Tiszta kód vs. Nehézkes sablonok",
+        phil_2_d: "A Wix vagy Tilda akár 10MB felesleges kódot tölt be. Mi tiszta, kézzel írt kódot készítünk, így oldala még lassabb mobilneten is pillanatok alatt megnyílik.",
+        phil_3_t: "Tapintható mobil élmény",
+        phil_3_d: "Az éttermi foglalások és megkeresések 85%-a okostelefonról történik. A gombokat és menüket a természetes hüvelykujjas navigációhoz igazítjuk.",
+        
+        srv_subtitle: "Szolgáltatásaink",
+        srv_title: "Amit tervezünk és építünk",
+        srv_desc: "Teljes körű megvalósítás: a strukturális stratégiától és szövegírástól a kódolásig, domain beállításig és foglalási rendszerekig.",
+        srv_1_name: "Éttermek, kávézók és bárok (HoReCa)",
+        srv_1_time: "Időtartam: 5–9 nap • €690-tól",
+        srv_1_body: "Reszponzív digitális étlap allergénszűrőkkel, OpenTable / Telegram asztalfoglalási folyamat, borlap, nagyfelbontású fotók és Google Térkép SEO.",
+        srv_2_name: "Hatékony Landing Page felületek",
+        srv_2_time: "Időtartam: 3–5 nap • €390-tól",
+        srv_2_body: "Célzott egyoldalas weboldal új szolgáltatások, termékek vagy rendezvények bevezetéséhez. Magas konverzió felesleges sallangok nélkül.",
+        srv_3_name: "Többoldalas vállalati weboldalak",
+        srv_3_time: "Időtartam: 7–14 nap • €990-tól",
+        srv_3_body: "Átfogó digitális jelenlét tanácsadóknak, magánklinikáknak és ügynökségeknek. Strukturált szolgáltatás-bemutatás, esettanulmányok, keresőoptimalizálás.",
+        srv_4_name: "Személyes márka és portfólió",
+        srv_4_time: "Időtartam: 3–7 nap • €350-tól",
+        srv_4_body: "Egyedi portfóliók alkotóknak, dizájnereknek, tanácsadóknak és alapítóknak, akik nemzetközi szinten szeretnének érvényesülni.",
+        
+        calc_pill: "Átlátható Árak",
+        calc_h2: "Projekt Költségkalkulátor",
+        calc_sub: "Válassza ki a formátumot és az opcionális funkciókat az azonnali kalkulációhoz.",
+        calc_f1_title: "1. Projekt típusa",
+        calc_t_land: "Landing / Egyoldalas weboldal",
+        calc_t_land_sub: "1 oldal • €390-tól",
+        calc_t_rest: "Étterem vagy kávézó weboldala",
+        calc_t_rest_sub: "Étlap, asztalfoglalás, térkép • €690-tól",
+        calc_t_biz: "Többoldalas vállalati weboldal",
+        calc_t_biz_sub: "Szolgáltatások, esettanulmányok • €990-tól",
+        calc_t_port: "Portfólió / Személyes márka",
+        calc_t_port_sub: "Referenciák, bemutatkozás • €350-tól",
+        calc_f2_title: "2. Opcionális funkciók",
+        calc_a_lang: "Többnyelvű struktúra",
+        calc_a_lang_d: "Második nyelv (Angol, Magyar) zökkenőmentes váltóval",
+        calc_a_tg: "Azonnali Telegram értesítő",
+        calc_a_tg_d: "Azonnali mobil értesítés minden beérkező foglalásról és megkeresésről",
+        calc_a_seo: "Helyi SEO és Google Cégem",
+        calc_a_seo_d: "Google Térkép profil optimalizálás, schema.org strukturált adatok",
+        calc_a_copy: "Szövegírás és tartalom",
+        calc_a_copy_d: "Egyedi szövegek, étlapstruktúra és meggyőző címsorok",
+        calc_total_title: "Becsült beruházás",
+        calc_note: "✓ Nulla havi tárhelyköltség (örökös tárhely tartalmazva)",
+        calc_btn_send: "Kalkuláció küldése Telegramon",
+        
+        cnt_pill: "Kapcsolatfelvétel",
+        cnt_title: "Hozzuk létre együtt az új weboldalát",
+        cnt_desc: "Keressen minket közvetlenül Telegramon, WhatsAppon vagy az alábbi űrlapon. Pár órán belül részletes válasszal jelentkezünk.",
+        cnt_loc_label: "Helyszín:",
+        cnt_loc_val: "Budapest, Magyarország 🇭🇺",
+        f_name: "Az Ön neve *",
+        f_contact: "Telegram vagy Telefonszám *",
+        f_type: "Projekt kategóriája",
+        f_notes: "Projekt részletei (referenciák, határidő)",
+        f_submit: "Ajánlatkérés küldése Telegramon →",
+        f_subnote: "Szigorúan bizalmas. Válasz 1–2 órán belül.",
+        footer_text: "— Gondos tervezéssel készült Budapesten 🇭🇺"
+      },
+
+      // ══════════════════════════════════
+      // RUSSIAN / РУССКИЙ
+      // ══════════════════════════════════
+      ru: {
+        nav_city: "Будапешт, HU • Принимаем заказы",
+        nav_works: "Работы",
+        nav_craft: "Качество",
+        nav_services: "Услуги",
+        nav_pricing: "Стоимость",
+        nav_contact: "Контакты",
+        nav_discuss: "Обсудить проект",
+        
+        hero_pill: "Бутиковая веб-разработка и дизайн",
+        hero_meta: "Будапешт, Венгрия • Центральная Европа • Онлайн по миру",
+        hero_h1_prefix: "Веб-сайты, которые говорят о вашем",
+        hero_h1_accent: " вкусе и уровне ",
+        hero_h1_suffix: "без лишних слов.",
+        hero_desc: "Создаем штучные цифровые пространства для ресторанов, локального бизнеса и персональных брендов. Выверенная типографика, чистый код без тяжелых конструкторов и безупречная скорость на смартфонах.",
+        hero_btn_discuss: "Обсудить проект в Telegram",
+        hero_btn_works: "Смотреть работы",
+        
+        hero_cirkusz_title: "Атмосферный сайт для культового бранч-кафе Будапешта",
+        hero_cirkusz_sub: "Цифровое меню, аллергены, Bagira кофе, скорость загрузки &lt;0.4с",
+        hero_alma_title: "Ресторан в Дворцовом квартале Будапешта",
+        hero_alma_sub: "OpenTable бронирование, сезонное меню, мультиязычность EN/HU",
+        hero_akb_title: "Портфолио креативного директора и автора",
+        hero_akb_sub: "Интерактивные PDF-кейсы, сторителлинг, легкий код",
+        
+        works_subtitle: "Избранные проекты",
+        works_title: "Сайты, работающие в реальном мире",
+        works_desc: "Каждый проект создается с нуля под конкретную аудиторию. Без шаблонных решений, с глубоким вниманием к гастрономии, брендингу и сценариям гостей.",
+        
+        case_cirkusz_text: "Культовое бранч-заведение в сердце еврейского квартала Будапешта. Задача сайта — моментально передать живую атмосферу ресторана, дать туристам удобное мобильное меню с аллергенами, рассказать про фирменный кофе Bagira и снять нагрузку с хостес.",
+        case_col_features: "Ключевые решения",
+        case_cirkusz_feat: "Адаптивное цифровое меню, аллергены, спешлы",
+        case_col_perf: "Производительность",
+        case_cirkusz_speed: "0.4s загрузка на мобильных (LTE)",
+        btn_open_live: "Открыть сайт cirkuszbp.hu",
+        
+        case_alma_text: "Семейный ресторан венгерской и средиземноморской кухни в историческом районе дворцов Будапешта. Сайт акцентирует внимание на уютной атмосфере, винной коллекции и удобстве онлайн-бронирования для европейских гостей столицы.",
+        case_alma_feat: "OpenTable виджет бронирования, мультиязычность EN/HU",
+        case_col_seo: "Локальное присутствие",
+        case_alma_local: "Gault & Millau интеграция, Google Maps SEO",
+        btn_open_live_alma: "Открыть сайт almaeskorte.hu",
+        
+        case_akb_text: "Минималистичное портфолио контент-стратега и креативного продюсера. Эстетика в стиле международных журналов, интерактивная галерея реальных кейсов (Locals, Nomad Connect, AI Project), скачивание резюме в 1 клик и бесплатный хостинг с нулевой задержкой.",
+        case_akb_feat: "Интерактивные PDF-кейсы, авторская типографика",
+        case_col_infra: "Инфраструктура",
+        case_akb_infra: "GitHub Pages хостинг без абонентской платы",
+        btn_open_live_akb: "Открыть сайт akbermet-work.github.io",
+        
+        phil_subtitle: "Стандарты качества",
+        phil_title: "Почему визуальное качество продает лучше громких обещаний",
+        phil_desc: "В премиальном сегменте доверие строится за первые 3 секунды. Клиент оценивает не слова, а аккуратность верстки, гармонию шрифтов, плавность открытия с мобильного и отсутствие дешевых шаблонов.",
+        phil_1_t: "Типографика европейского уровня",
+        phil_1_d: "Мы не используем шаблонные наборы шрифтов. Выверенные пропорции, интерлиньяж и композиция создают ощущение публикации в глянцевом издании, подчеркивая статус заведения или бренда.",
+        phil_2_t: "Чистый код без раздутых конструкторов",
+        phil_2_d: "Сайты на Tilda или Wix подгружают до 10 МБ лишнего системного кода. Мы пишем чистый, легкий код, благодаря чему страница открывается моментально даже в метро или на слабом Wi-Fi.",
+        phil_3_t: "Тактильный мобильный опыт",
+        phil_3_d: "85% бронирований и заказов происходит со смартфона. Мы проектируем мобильную версию в первую очередь — все кнопки попадают под большой палец, меню листается плавно, без дерганий.",
+        
+        srv_subtitle: "Форматы работы",
+        srv_title: "Что именно мы разрабатываем",
+        srv_desc: "Полный цикл: от структуры и копирайтинга до верстки, настройки домена и интеграции систем бронирования.",
+        srv_1_name: "Сайты для ресторанов, кафе и баров (HoReCa)",
+        srv_1_time: "Срок: 5–9 дней • от €690",
+        srv_1_body: "Адаптивное интерактивное меню с фильтрацией аллергенов, интеграция OpenTable / Telegram для брони столиков, винная карта, фото-галерея, мультиязычность (EN / HU / RU) и привязка к Google Maps.",
+        srv_2_name: "Имиджевые промо-страницы и лендинги",
+        srv_2_time: "Срок: 3–5 дней • от €390",
+        srv_2_body: "Целевая одностраничная презентация под запуск нового продукта, услуги или мероприятия. Высокая конверсия, выверенный копирайтинг без «воды», моментальная отправка заявок в Telegram.",
+        srv_3_name: "Многостраничные сайты компаний и сервисов",
+        srv_3_time: "Срок: 7–14 дней • от €990",
+        srv_3_body: "Корпоративные сайты для сервисных компаний, консалтинга, клиник, архитектурных бюро и b2b. Структурированный каталог услуг, кейсы, отзывы, SEO-оптимизация под поисковики.",
+        srv_4_name: "Персональный бренд и портфолио",
+        srv_4_time: "Срок: 3–7 дней • от €350",
+        srv_4_body: "Штучные сайты для экспертов, дизайнеров, авторов и предпринимателей. Усиливают статус, привлекают международные предложения и партнерства. Бесплатный пожизненный хостинг.",
+        
+        calc_pill: "Прозрачная стоимость",
+        calc_h2: "Калькулятор бюджета проекта",
+        calc_sub: "Выберите формат сайта и необходимые опции для предварительного расчета.",
+        calc_f1_title: "1. Тип проекта",
+        calc_t_land: "Лендинг / Промо-страница",
+        calc_t_land_sub: "1 страница • от €390",
+        calc_t_rest: "Сайт ресторана или кафе",
+        calc_t_rest_sub: "Меню, бронь, карты • от €690",
+        calc_t_biz: "Многостраничный сайт компании",
+        calc_t_biz_sub: "Каталог услуг, кейсы • от €990",
+        calc_t_port: "Портфолио / Личный бренд",
+        calc_t_port_sub: "Кейсы, сторителлинг • от €350",
+        calc_f2_title: "2. Дополнительные опции",
+        calc_a_lang: "Мультиязычная версия",
+        calc_a_lang_d: "Второй язык (English, Magyar, Русский) с плавным переключателем",
+        calc_a_tg: "Мгновенные заявки в Telegram",
+        calc_a_tg_d: "Оповещения о бронях и лидах прямо на ваш личный телефон",
+        calc_a_seo: "Локальное SEO и карты",
+        calc_a_seo_d: "Синхронизация Google Business, карты, разметка schema.org",
+        calc_a_copy: "Копирайтинг и контент",
+        calc_a_copy_d: "Напишем тексты, структуру меню и заголовки без лишних слов",
+        calc_total_title: "Ориентировочная сумма",
+        calc_note: "✓ Хостинг без ежемесячных платежей включен",
+        calc_btn_send: "Отправить расчет в Telegram",
+        
+        cnt_pill: "Свяжитесь с нами",
+        cnt_title: "Давайте обсудим ваш проект",
+        cnt_desc: "Напишите в Telegram, WhatsApp или заполните форму. Мы ответим в течение пары часов и предложим удобный план реализации.",
+        cnt_loc_label: "Локация:",
+        cnt_loc_val: "Будапешт, Венгрия 🇭🇺",
+        f_name: "Ваше имя *",
+        f_contact: "Telegram или телефон *",
+        f_type: "Категория сайта",
+        f_notes: "О проекте (пожелания, референсы)",
+        f_submit: "Отправить заявку в Telegram →",
+        f_subnote: "Конфиденциально. Отвечаем в течение 1–2 часов.",
+        footer_text: "— Создано с заботой в Будапеште 🇭🇺"
+      }
+    };
+
+    let activeLang = 'en';
+
+    function switchLang(lang) {
+      activeLang = lang;
+      
+      const bEn = document.getElementById('lang-en');
+      const bHu = document.getElementById('lang-hu');
+      const bRu = document.getElementById('lang-ru');
+      const bEnM = document.getElementById('lang-en-mob');
+      const bHuM = document.getElementById('lang-hu-mob');
+      const bRuM = document.getElementById('lang-ru-mob');
+
+      [bEn, bHu, bRu].forEach(b => {
+        if (b) b.className = "px-2.5 py-1 rounded-full text-espresso-muted hover:text-espresso transition-all";
+      });
+      [bEnM, bHuM, bRuM].forEach(b => {
+        if (b) b.className = "px-2 py-0.5 rounded-full text-espresso-muted";
+      });
+
+      const activeBtn = document.getElementById('lang-' + lang);
+      const activeBtnM = document.getElementById('lang-' + lang + '-mob');
+      if (activeBtn) activeBtn.className = "px-2.5 py-1 rounded-full bg-espresso text-milk transition-all";
+      if (activeBtnM) activeBtnM.className = "px-2 py-0.5 rounded-full bg-espresso text-milk";
+
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dictionary[lang] && dictionary[lang][key]) {
+          el.innerHTML = dictionary[lang][key];
+        }
+      });
+
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const radio = document.querySelector('input[name="calc_type"]:checked');
+      let base = radio ? parseInt(radio.value) : 390;
+
+      let extras = 0;
+      let selectedNotes = [];
+
+      const addLang = document.getElementById('add-lang');
+      const addTg = document.getElementById('add-tg');
+      const addSeo = document.getElementById('add-seo');
+      const addCopy = document.getElementById('add-copy');
+
+      if (addLang && addLang.checked) { 
+        extras += parseInt(addLang.value); 
+        selectedNotes.push(activeLang === 'hu' ? "Többnyelvűség (+€120)" : (activeLang === 'ru' ? "Мультиязычность (+€120)" : "Multilingual (+€120)")); 
+      }
+      if (addTg && addTg.checked) { 
+        extras += parseInt(addTg.value); 
+        selectedNotes.push(activeLang === 'hu' ? "Telegram bot (+€80)" : (activeLang === 'ru' ? "Telegram-бот (+€80)" : "Telegram Bot (+€80)")); 
+      }
+      if (addSeo && addSeo.checked) { 
+        extras += parseInt(addSeo.value); 
+        selectedNotes.push(activeLang === 'hu' ? "Helyi SEO (+€90)" : (activeLang === 'ru' ? "Local SEO (+€90)" : "Local SEO (+€90)")); 
+      }
+      if (addCopy && addCopy.checked) { 
+        extras += parseInt(addCopy.value); 
+        selectedNotes.push(activeLang === 'hu' ? "Szövegírás (+€110)" : (activeLang === 'ru' ? "Копирайтинг (+€110)" : "Copywriting (+€110)")); 
+      }
+
+      const total = base + extras;
+      const huf = Math.round((total * 395) / 1000) * 1000;
+
+      document.getElementById('price-eur').innerText = '€' + total;
+      document.getElementById('price-huf').innerText = '≈ ' + huf.toLocaleString('hu-HU') + ' Ft';
+
+      const typeLabel = radio.parentElement.querySelector('.font-medium').innerText;
+      let msg = "";
+      if (activeLang === 'hu') {
+        msg = `Üdvözlöm! Weboldal készítéssel kapcsolatban érdeklődöm:%0A- Típus: ${encodeURIComponent(typeLabel)} (€${base})`;
+        if (selectedNotes.length) msg += `%0A- Opciók: ${encodeURIComponent(selectedNotes.join(', '))}`;
+        msg += `%0A- Becsült összeg: €${total} (≈ ${huf.toLocaleString('hu-HU')} Ft)`;
+      } else if (activeLang === 'ru') {
+        msg = `Здравствуйте! Хочу заказать сайт:%0A- Формат: ${encodeURIComponent(typeLabel)} (€${base})`;
+        if (selectedNotes.length) msg += `%0A- Опции: ${encodeURIComponent(selectedNotes.join(', '))}`;
+        msg += `%0A- Оценка: €${total} (≈ ${huf.toLocaleString('ru-RU')} Ft)`;
+      } else {
+        msg = `Hello! I would like to inquire about a website:%0A- Scope: ${encodeURIComponent(typeLabel)} (€${base})`;
+        if (selectedNotes.length) msg += `%0A- Add-ons: ${encodeURIComponent(selectedNotes.join(', '))}`;
+        msg += `%0A- Estimate: €${total} (≈ ${huf.toLocaleString('en-US')} HUF)`;
+      }
+
+      document.getElementById('btn-calc-tg').href = `https://t.me/dizbalanser?text=${msg}`;
+    }
+
+    function sendInquiry(e) {
+      e.preventDefault();
+      const name = document.getElementById('inquiry-name').value;
+      const contact = document.getElementById('inquiry-contact').value;
+      const type = document.getElementById('inquiry-type').value;
+      const notes = document.getElementById('inquiry-notes').value;
+
+      let text = "";
+      if (activeLang === 'hu') {
+        text = `Üdvözlöm! Új ajánlatkérés a weboldalról:%0A👤 Név: ${encodeURIComponent(name)}%0A📞 Kapcsolat: ${encodeURIComponent(contact)}%0A🏷 Kategória: ${encodeURIComponent(type)}%0A📝 Megjegyzés: ${encodeURIComponent(notes || '—')}`;
+      } else if (activeLang === 'ru') {
+        text = `Здравствуйте! Заявка на сайт:%0A👤 Имя: ${encodeURIComponent(name)}%0A📞 Контакт: ${encodeURIComponent(contact)}%0A🏷 Категория: ${encodeURIComponent(type)}%0A📝 Детали: ${encodeURIComponent(notes || '—')}`;
+      } else {
+        text = `Hello! New website inquiry:%0A👤 Name: ${encodeURIComponent(name)}%0A📞 Contact: ${encodeURIComponent(contact)}%0A🏷 Category: ${encodeURIComponent(type)}%0A📝 Notes: ${encodeURIComponent(notes || '—')}`;
+      }
+      window.open(`https://t.me/dizbalanser?text=${text}`, '_blank');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openI = document.getElementById('menu-icon-open');
+      const closeI = document.getElementById('menu-icon-close');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        openI.classList.add('hidden');
+        closeI.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        openI.classList.remove('hidden');
+        closeI.classList.add('hidden');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCalc);
+  </script>
+
+</body>
+</html>
